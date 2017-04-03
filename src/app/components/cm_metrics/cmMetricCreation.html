@@ -1,0 +1,53 @@
+<h2> Creation of Metric </h2>
+<br>
+<div layout="column">
+<div layout="row">
+	<label style="margin-left:5pt"> Metric name: </label>
+	<input style="margin-left:8pt; max-width:150px;" type="text" ng-model="vm.mName">
+</div>
+<br>
+<div layout="row">
+	<label style="margin-left:5pt"> Periodicity: </label>
+	<select style="margin-left:15pt" ng-model="vm.mPeriod">
+		<option value="" disabled selected>Select period</option>
+		<option ng-repeat="mPeriod in vm.mPeriodList">{{mPeriod}}</option>
+	</select>
+</div>
+</div>
+<br>
+<br>
+<md-button class="md-flat md-primary" ng-click="vm.addFunction()" style="float:left"> Add Function </md-button>
+<br>
+<br>
+<br>
+<div layout="column" ng-repeat="parm in vm.parameters">
+	<div layout="row">
+	<label ng-if="$index === 0"><font size="4">f =</font></label>
+	<label ng-if="$index > 0" style="margin-left:7pt">+</label>
+	<input style="margin-left:8pt; max-width:60px;" min="0.0" max="1.0" step=".1" type="number" ng-model="parm.weight">
+	<label style="margin-left:5pt"> x </label>
+	<select style="margin-left:5pt" ng-model="parm.func">
+		<option value="" disabled selected>Select function</option>
+		<option ng-repeat="func in vm.mFunctionList">{{func}}</option>
+	</select>
+	<label style="margin-left:5pt"> ( </label>
+	<select style="margin-left:5pt" ng-model="parm.element">
+		<option value="" disabled selected>Select element</option>
+		<option ng-repeat="element in vm.mElementList">{{element}}</option>
+	</select>
+	<label style="margin-left:5pt"> ) </label>
+	<label style="margin-left:10pt">Min:</label>
+	<input style="margin-left:8pt; max-width:60px;" min="0.0" type="number" ng-model="parm.min">
+	<label style="margin-left:10pt">Max:</label>
+	<input style="margin-left:8pt; max-width:60px;" min="0.0" type="number" ng-model="parm.max">
+	<i ng-if="$index > 0" ng-click="vm.removeParam($index)" style="margin-left:15pt; cursor:pointer" class="material-icons">delete_forever</i>
+	</div>
+	<div>
+	<p></p>
+	</div>
+</div>
+<br>
+<br>
+<md-button class="md-flat md-primary" ng-click="vm.cancel()" style="float:left"> Cancel </md-button>
+<md-button class="md-flat md-primary" ng-click="vm.create()" style="float:right"> Create </md-button>
+

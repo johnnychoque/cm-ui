@@ -1,0 +1,34 @@
+<h2> Experimenter Communities </h2>
+<div>
+    <md-progress-circular ng-show="vm.loadingChart" class="md-hue-3 chart_spinner" md-mode="indeterminate"></md-progress-circular>
+</div>
+<table datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.dtColumnDefs" class="hover">
+    <thead>
+        <tr>
+			<th>Community name</th>
+			<th>Description</th>
+			<th>Created date</th>
+            <th>Number of users</th>
+			<th>Show</th>
+			<th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="community in vm.communities"">
+            <td align="center"> {{ community.communityName }} </td>
+            <td align="center"> {{ community.description }} </td>
+            <td align="center"> {{ vm.readableDate(community.createdDate) }} </td>
+			<td align="center"> {{ community.members.length }} </td>
+			<td align="center"> <i ng-click="vm.showCommunity(community)" style="cursor:pointer" class="material-icons">find_in_page</i></td>
+			<td align="center"> <i ng-click="vm.confirmRemove($event, community)" style="cursor:pointer" class="material-icons">delete_forever</i></td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<md-button class="md-flat md-primary" ng-click="vm.newCommunity()" style="float:left">
+    New Community
+</md-button>
+
+<!--
+<td align="center"> <i ng-click="vm.confirmEdit($event, community)" style="cursor:pointer" class="material-icons">assignment</i></td>
+-->

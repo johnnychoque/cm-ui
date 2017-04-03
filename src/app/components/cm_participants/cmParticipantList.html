@@ -1,0 +1,42 @@
+<h2> List of participants </h2>
+<table datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.dtColumnDefs" class="hover">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Start date </th>
+            <th>Metric score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="participant in vm.participants">
+			<td align="center"> {{ participant.username }} </td>
+			<td align="center"> {{ vm.readableDate(participant.startDate) }} </td>
+			<td align="center"> {{ participant.metricScore[0].value }} </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<md-button class="md-flat md-primary" ng-click="vm.NewInvitation()" style="float:left">
+    New invitation
+</md-button>
+<br>
+<br>
+<div>
+    <h3 class="ep_bBoldLabel">List of invitations pending a response</h3>
+    <table datatable="ng" dt-options="vm.dtOptionsPending" dt-column-defs="vm.dtColumnDefsPending" class="hover">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Status</th>
+            <th>Invitation Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="invitation in vm.invsPending">
+            <td align="center" >{{ invitation.username.toUpperCase() }}</td>
+            <td align="center" >{{ invitation.state.toUpperCase() }}</td>
+            <td align="center" >{{ vm.readableDate(invitation.dateSent) }}</td>
+        </tr>
+    </tbody>
+    </table>
+</div>

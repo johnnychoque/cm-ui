@@ -1,0 +1,25 @@
+<h2> List of Metrics </h2>
+<table datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.dtColumnDefs" class="hover">
+    <thead>
+        <tr>
+            <th>Metric name</th>
+            <th>Metric function</th>
+			<th>Created date</th>
+			<th>Edit</th>
+			<th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="metric in vm.metrics">
+            <td align="center"> {{ metric.metricName }} </td>
+			<td align="center"> {{ metric.metricFunction }} </td>
+			<td align="center"> {{ vm.readableDate(metric.createdDate) }} </td>
+			<td align="center"> <i ng-click="vm.editMetric(metric)" style="cursor:pointer" class="material-icons">description</i></td>
+			<td align="center"> <i ng-click="vm.confirmRemove(metric)" style="cursor:pointer" class="material-icons">delete_forever</i></td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<md-button class="md-flat md-primary" ng-click="vm.newMetric()" style="float:left">
+    New Metric
+</md-button>

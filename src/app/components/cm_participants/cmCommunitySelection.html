@@ -1,0 +1,47 @@
+<div layout="column">
+	<div layout="row">
+	<p style="margin-top:15pt">Community :</p>
+	<md-select style="margin-left:20pt" placeholder="Select Community" ng-model="vm.currCommunity">
+		<md-option ng-value="comm" ng-repeat="comm in vm.communities" ng-click="vm.commSel(comm)">{{comm.communityName}}</md-option>
+	</md-select>
+	</div>
+    <span ng-if="vm.showInfo">
+    <label class="ep_pLabel">Description: </label>
+    <label class="ep_bLabel"> {{vm.description}} </label>
+    </span>
+    <span ng-if="vm.showInfo">
+    <label class="ep_pLabel">Criteria: </label>
+    <label class="ep_bLabel"> {{vm.criteria}} </label>
+    </span>
+</div>
+<br>
+<br>
+<table datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.dtColumnDefs" class="hover">
+    <thead>
+        <tr>
+			<th>
+                <i ng-if="vm.selectAll" class="material-icons" style="cursor:pointer;" ng-click="vm.toggleAll()">check_box</i>
+                <i ng-if="!vm.selectAll" class="material-icons" style="cursor:pointer;" ng-click="vm.toggleAll()">check_box_outline_blank</i>
+			</th>
+            <th>Username</th>
+			<th>Age</th>
+            <th>Interests</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="participant in vm.commSelected">
+			<td align="center"> 
+				<i ng-if="vm.isSelected(participant)" class="material-icons" style="cursor:pointer;" ng-click="vm.toggleOne(participant,'unselected')">check_box</i>
+                <i ng-if="!vm.isSelected(participant)" class="material-icons" style="cursor:pointer;" ng-click="vm.toggleOne(participant,'selected')">check_box_outline_blank</i>
+			</td>
+            <td align="center"> {{ participant.username }} </td>
+			<td align="center"> {{ participant.age }} </td>
+			<td align="center"> {{ participant.interests }} </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<md-button class="md-flat md-primary" ng-click="vm.cancel()" style="float:left"> Cancel </md-button>
+<md-button class="md-flat md-primary" ng-disabled="!vm.selected.length" ng-click="vm.sendInvitations()" style="float:right">
+    Send invitations
+</md-button>

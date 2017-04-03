@@ -1,0 +1,17 @@
+<div style="margin-left:45px" layout="column" id="selectUser">
+	<h2>Welcome to Community Management UI</h2>
+	<p> You have the manager roles of: </p>
+	<ul>
+		<li ng-repeat= "manager in vm.managersSelected">
+		  <div>{{manager}} </div>
+		</li>
+	</ul>
+	<div ng-if="vm.IsSiteManager">
+	<p> And you are site manager of: </p>
+	<ul>
+	<li ng-repeat= "site in vm.sitesSelected">
+	  <div>{{site}} </div>
+	</li>
+	</ul>
+	</div>
+</div>

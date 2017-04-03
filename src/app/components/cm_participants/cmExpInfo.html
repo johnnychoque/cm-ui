@@ -1,0 +1,22 @@
+<!-- <section class="static_page" flex> -->
+<div layout="column">
+
+	<span>
+	<label class="ep_pLabel">Main Experimenter ID (Experiment Ownwer): </label>
+	<label class="ep_bLabel"> {{vm.mainExperimenterId}} </label>
+	</span>
+
+	<span>
+	<label class="ep_pLabel">Current Experiment ID: </label>
+	<label class="ep_bLabel"> {{vm.experimentId}} </label>
+	</span>
+<!--
+	<span>
+	<label class="ep_pLabel">Experiment ID: </label>
+	<label class="ep_bLabel"> {{vm.experimentInfo.experimentId}} </label>
+	</span>
+-->
+	<div ui-view="partContent" id="ep_content"></div>
+</div>
+
+<!-- </section> -->

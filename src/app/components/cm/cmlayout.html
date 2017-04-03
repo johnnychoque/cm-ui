@@ -1,0 +1,71 @@
+<div layout="column">
+    <section layout="row" id="ep">
+        <div id="ep_sidebar">
+
+            <div class="accordion-sb">
+                <input type="radio" name="accordion1" id="comms" />
+                <section class="box-sb">
+					<span layout="row">
+					<i class="material-icons icon-title-sb">grain</i>
+					<label class="box-title-sb" for="comms">COMMUNITIES</label>
+					</span>
+                    <label class="box-close-sb" for="acc-close1"></label>
+                    <div class="box-content-sb">
+                        <a href="" ng-if="vm.isExperimenter()" ng-click="vm.showExperComms()" style="text-decoration:none; color: inherit;">
+                            <md-item-content md-ink-ripple="#EF4070" layout="row" layout-align="start center">
+                                <div class="inset">EXPERIMENTER</div>
+                            </md-item-content>
+                        </a>
+                        <a href="" ng-if="vm.isSiteManager('london')" ng-click="vm.showSiteComms('london')" style="text-decoration:none; color: inherit;">
+                            <md-item-content md-ink-ripple="#EF4070" layout="row" layout-align="start center">
+                                <div class="inset">LONDON SITE</div>
+                            </md-item-content>
+                        </a>
+                        <a href="" ng-if="vm.isSiteManager('santander')" ng-click="vm.showSiteComms('santander')" style="text-decoration:none; color: inherit;">
+                            <md-item-content md-ink-ripple="#EF4070" layout="row" layout-align="start center">
+                                <div class="inset">SANTANDER SITE</div>
+                            </md-item-content>
+                        </a>
+                        <a href="" ng-if="vm.isSiteManager('aarhus')" ng-click="vm.showSiteComms('aarhus')" style="text-decoration:none; color: inherit;">
+                            <md-item-content md-ink-ripple="#EF4070" layout="row" layout-align="start center">
+                                <div class="inset">AARHUS SITE</div>
+                            </md-item-content>
+                        </a>
+						<a href="" ng-if="vm.isFacilityManager()" ng-click="vm.showFacilityComms()" style="text-decoration:none; color: inherit;">
+                            <md-item-content md-ink-ripple="#EF4070" layout="row" layout-align="start center">
+                                <div class="inset">FACILITY</div>
+                            </md-item-content>
+                        </a>
+                    </div>
+                </section>
+                <input type="radio" name="accordion1" id="acc-close1">
+            </div>
+
+            <div ng-if="vm.isExperimenter()">
+                <md-item-content class="label-sb"  ng-click="vm.toParticipants()" md-ink-ripple="#EF4070" layout="row" layout-align="start center">
+                    <i class="material-icons">people</i>
+                    <label class="inset">PARTICIPANTS</label>
+                </md-item-content>
+            </div>
+<!--			
+            <div ng-if="vm.isExperimenter()">
+                <md-item-content class="label-sb"  ng-click="vm.toMetrics()" md-ink-ripple="#EF4070" layout="row" layout-align="start center">
+                    <i class="material-icons">photo_library</i>
+                    <label class="inset">METRICS</label>
+                </md-item-content>
+            </div>
+            <div ng-if="vm.isExperimenter()">
+                <md-item-content class="label-sb" ng-click="vm.toExpPortal()" md-ink-ripple="#EF4070" layout="row" layout-align="start center">
+                    <i class="material-icons">home</i>
+                    <label class="inset">EXPERIMENTER PORTAL</label>
+                </md-item-content>
+            </div>
+-->
+        </div>
+        <div ui-view="content" id="ep_content"></div>
+    </section>
+</div>
+
+<!--
+<label ng-if="vm.expSeleted" class="ep_optionSelected">PARTICIPANTS</label>
+-->

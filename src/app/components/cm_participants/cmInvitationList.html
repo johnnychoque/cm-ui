@@ -1,0 +1,27 @@
+<h2> New Invitations </h2>
+<br>
+<label class="ep_pLabel">Selected participants</label>
+<br>
+<br>
+<table datatable="ng" dt-options="vm.dtOptions" dt-column-defs="vm.dtColumnDefs" class="hover">
+    <thead>
+        <tr>
+			<th>Name</th>
+            <th>Username</th>
+            <th>Age</th>
+            <th>Interests</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="invitation in vm.invitations">
+			<td align="center"> {{ invitation.name }} </td>
+            <td align="center"> {{ invitation.username }} </td>
+			<td align="center"> {{ invitation.age }} </td>
+			<td align="center"> {{ invitation.interests }} </td>
+        </tr>
+    </tbody>
+</table>
+<br>
+
+<md-button class="md-flat md-primary" ng-click="vm.cancel()" style="float:left"> Cancel </md-button>
+<md-button class="md-flat md-primary" ng-click="vm.send()" style="float:right"> Send </md-button>

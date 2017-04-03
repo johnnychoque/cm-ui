@@ -1,0 +1,39 @@
+<div style="margin-left:45px" layout="column" id="selectUser">
+	<h2>Select type of user for demo</h2>
+	<md-checkbox ng-model="vm.manager.experimenter" ng-click="vm.toggle('experimenter', vm.managersSelected)">
+	Experimenter
+	</md-checkbox>
+	<md-checkbox ng-model="vm.manager.site" ng-click="vm.toggle('site', vm.managersSelected)">
+	Site Manager
+	</md-checkbox>
+	<div style="margin-left:45px" ng-if="vm.manager.site" aria-label="">
+		<md-checkbox ng-model="vm.site.london" ng-click="vm.toggle('london', vm.sitesSelected)">
+		London
+		</md-checkbox>
+		<md-checkbox ng-model="vm.site.santander" ng-click="vm.toggle('santander', vm.sitesSelected)">
+		Santander
+		</md-checkbox>
+		<md-checkbox ng-model="vm.site.aarhus" ng-click="vm.toggle('aarhus', vm.sitesSelected)">
+		Aarhus
+		</md-checkbox>
+	</div>
+	<md-checkbox ng-model="vm.manager.facility" ng-click="vm.toggle('facility', vm.managersSelected)">
+	Facility Manager
+	</md-checkbox>
+
+	<!--
+	{{vm.managersSelected}}
+	{{vm.sitesSelected}}
+	-->
+	<!--
+	<md-radio-group ng-model="vm.managerType" layout="column" ng-init=" vm.managerType = 'experimenter'">
+		<md-radio-button value="experimenter" class="md-primary" >Experimenter</md-radio-button>
+		<md-radio-button value="site" class="md-primary" >Site Manager</md-radio-button>
+		<md-radio-button value="facility" class="md-primary" >Facility Manager</md-radio-button>
+	</md-radio-group>
+	-->
+</div>
+<br>
+<div style="margin-left:45px">
+	<md-button style="float:left" class="md-flat md-primary" ng-click="vm.selectUser()" ng-disabled="!vm.selectEnabled"> Select </md-button>
+</div>

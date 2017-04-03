@@ -1,0 +1,14 @@
+<form name="vm.usersForm" novalidate style="width:100%">
+	<md-input-container class="md-block">
+		<label>Users emails</label>
+		<input name="email" required ng-model="vm.userEmails">
+		<div ng-messages="vm.usersForm.email.$error">
+			<div ng-message="required">List of emails separated by comma or semicolon</div>
+		</div>
+	</md-input-container>
+
+	<md-button class="md-flat md-primary" ng-click="vm.cancel()" style="float:left"> Cancel </md-button>
+	<md-button class="md-flat md-primary" ng-click="vm.sendInvitations()" ng-disabled="vm.usersForm.$invalid" style="float:right"> Send invitations 
+	</md-button>
+
+</form>
