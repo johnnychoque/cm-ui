@@ -1,8 +1,29 @@
 <md-dialog layout-padding>
     <md-dialog-content class="modal comInfo">
         <h2>Community Info</h2>
-        <br>
-        <textarea readonly>{{vm.getFancyJson()}}</textarea>
-        <br>
+
+		<table>
+			<tr>
+			<td class="ep_pLabel">Community name: </td>
+			<td class="ep_bLabel"> {{vm.community.communityName}} </td>
+			</tr>
+			<tr>
+			<td class="ep_pLabel">Description: </td>
+			<td class="ep_bLabel"> {{vm.community.description}} </td>
+			</tr>
+			<tr>
+			<td class="ep_pLabel">Created date: </td>
+			<td class="ep_bLabel"> {{vm.readableDate(vm.community.createdDate)}} </td>
+			</tr>
+			<tr>
+			<td class="ep_pLabel">Keywords: </td>
+			<td class="ep_bLabel"> {{vm.community.keywords}} </td>
+			</tr>
+			<tr>
+			<td class="ep_pLabel">Criteria: </td>
+			<td class="ep_bLabel"> {{vm.community.criteria}} </td>
+			</tr>
+		</table>
+		</br>
     </md-dialog-content>
 </md-dialog>

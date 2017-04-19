@@ -18,5 +18,12 @@
         vm.getFancyJson = function() {
             return JSON.stringify(vm.community, null, 4);
         };
+		
+		vm.readableDate = function (str) {
+			var date = new Date(str);
+			return date.toString().substring(0, 15);
+		};
     }
+	
+
 })();
