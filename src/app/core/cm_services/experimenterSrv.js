@@ -36,7 +36,7 @@
 				console.log('FAIL');
             }
         }
-
+        
         function newCommunity(info, success_, fail_) {
             experimenterCommunityAPI.newCommunity(info, success, fail);
 

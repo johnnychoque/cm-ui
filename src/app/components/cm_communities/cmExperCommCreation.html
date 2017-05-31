@@ -41,21 +41,27 @@
 <br>
 <div layout="row">
 	<div layout="column">
-	<label style="margin-left:10pt">Range Age</label>
-	<md-select style="margin-left:10pt" placeholder="Range age" ng-model="vm.foo">
+    <label style="margin-left:10pt">Range Age</label>
+	<md-select style="margin-left:10pt" placeholder="Range age" ng-model="vm.selectedRange">
 		<md-option ng-value="range" ng-repeat="range in vm.rangeList" ng-click="vm.rangeSel(range)">{{range}}</md-option>
 	</md-select>
 	</div>
-
+    <!--
+    IMPORTANTE: en md-select atributo multiple="true" NO funciona con ng-model=undefined (usado para borrar opciones ya seleccionadas)
+    -->
 	<div layout="column">
-	<label style="margin-left:25pt">Interests</label>
-	<md-select style="margin-left:25pt" placeholder="Interests" ng-model="vm.selectedInterests" multiple="{{false}}">
-		<md-option ng-value="interest" ng-repeat="interest in vm.interestsList">{{interest}}</md-option>
+	<label style="margin-left:25pt">Interest</label>
+	<md-select style="margin-left:25pt" placeholder="Interest" ng-model="vm.selectedInterests">
+		<md-option ng-value="interest" ng-repeat="interest in vm.interestsList" ng-click="vm.interestSel()">{{interest}}</md-option>
 	</md-select>
 	</div>
-	
+    
 	<div layout="column">
-	<md-button class="md-flat md-primary" ng-click="vm.applySel()" style="margin-left:25pt; float:left"> Apply Criteria </md-button>
+	<md-button class="md-flat md-primary" ng-click="vm.applySel()" style="margin-left:25pt; float:left" ng-disabled="!(vm.selectedRange || vm.selectedInterests)"> Apply Criteria </md-button>
+	</div>    
+    
+    <div layout="column">
+    <md-button class="md-flat md-primary" ng-click="vm.clearSel()" style="margin-left:25pt; float:left"> clear Criteria </md-button>
 	</div>
 </div>
 <br>
@@ -67,10 +73,10 @@
                 <i ng-if="vm.selectAll" class="material-icons" style="cursor:pointer;" ng-click="vm.toggleAll()">check_box</i>
                 <i ng-if="!vm.selectAll" class="material-icons" style="cursor:pointer;" ng-click="vm.toggleAll()">check_box_outline_blank</i>
 			</th>
-            <th>Name</th>
             <th>Username</th>
 			<th>Age</th>
             <th>Interests</th>
+            <th>Country</th>
         </tr>
     </thead>
     <tbody>
@@ -79,10 +85,10 @@
 				<i ng-if="vm.isSelected(user)" class="material-icons" style="cursor:pointer;" ng-click="vm.toggleOne(user,'unselected')">check_box</i>
                 <i ng-if="!vm.isSelected(user)" class="material-icons" style="cursor:pointer;" ng-click="vm.toggleOne(user,'selected')">check_box_outline_blank</i>
 			</td>
-            <td align="center"> {{ user.name }} </td>
 			<td align="center"> {{ user.username }} </td>
 			<td align="center"> {{ user.age }} </td>
 			<td align="center"> {{ user.interests }} </td>
+            <td align="center"> {{ user.country }} </td>
         </tr>
     </tbody>
 </table>

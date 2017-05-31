@@ -4,14 +4,14 @@
         <tr>
             <th>Username</th>
             <th>Start date </th>
-            <th>Metric score</th>
+            <th>Metrics Score</th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="participant in vm.participants">
 			<td align="center"> {{ participant.username }} </td>
 			<td align="center"> {{ vm.readableDate(participant.startDate) }} </td>
-			<td align="center"> {{ participant.metricScore[0].value }} </td>
+            <td align="center"> <i ng-click="vm.showMetrics(participant)" style="cursor:pointer" class="material-icons">burst_mode</i></td>
         </tr>
     </tbody>
 </table>

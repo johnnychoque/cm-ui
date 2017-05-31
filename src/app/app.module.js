@@ -21,6 +21,7 @@
 		'datatables',
 		'jsonFormatter',
 		'ngTagsInput',
-		'ng.jsoneditor'
+		'ng.jsoneditor',
+        'nvd3'
 	]);
 })();

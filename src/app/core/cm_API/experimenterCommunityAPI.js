@@ -9,6 +9,7 @@
 
         var service = {
             getCommunities: getCommunities,
+            getInterests: getInterests,
             newCommunity: newCommunity,
             getExperiment: getExperiment,
             updateExperiment: updateExperiment,
@@ -35,6 +36,21 @@
 
         }
 
+        function getInterests(success_, fail_) {
+            var path = 'community/experimenter/interests';
+            console.log('experimenterCommunityAPI.getInterests');
+            Restangular.one(path).get().then(
+                function(res) {
+                    console.log('OK');
+                    return success_(res);
+                },
+                function(res) {
+                    console.log('FAIL');
+                    return fail_(res);
+                });
+
+        }
+        
         function newCommunity(info, success_, fail_) {
             var path = 'community/experimenter';
             Restangular.one(path).customPOST(info).then(

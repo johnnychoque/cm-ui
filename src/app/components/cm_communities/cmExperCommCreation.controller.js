@@ -4,9 +4,9 @@
     angular.module('app.components')
         .controller('cmExperCommCreationController', cmExperCommCreationController);
 
-    cmExperCommCreationController.$inject = ['$location', 'experimenterSrv', 'alert', 'newCommunitySrv', '$scope', '$timeout', 'animation', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'managerSrv', 'ocUsersSrv'];
+    cmExperCommCreationController.$inject = ['$location', 'experimenterSrv', 'alert', 'newCommunitySrv', '$scope', '$timeout', 'animation', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'managerSrv', 'ocUsersSrv', 'utilSrv'];
 
-    function cmExperCommCreationController($location, experimenterSrv, alert, newCommunitySrv, $scope, $timeout, animation, DTOptionsBuilder, DTColumnDefBuilder, managerSrv, ocUsersSrv) {
+    function cmExperCommCreationController($location, experimenterSrv, alert, newCommunitySrv, $scope, $timeout, animation, DTOptionsBuilder, DTColumnDefBuilder, managerSrv, ocUsersSrv, utilSrv) {
         var vm = this;
 		vm.loadingChart = false;
 		
@@ -17,6 +17,8 @@
 		vm.keywords = '';
 		
 		vm.rangeSelected = [];
+        vm.rangeSelState = false;
+        vm.interestSelState = false;
 		vm.selected = [];
 		vm.minAge = 0;
 		vm.maxAge = 0;
@@ -26,8 +28,9 @@
 		vm.toggleOne = toggleOne;
 
 		vm.params = {};
-			
+        
 		vm.rangeSel = function (range) {
+            vm.rangeSelState = true;
 			switch (range) {
 				case '18 - 25':
 					vm.minAge = 18;
@@ -46,18 +49,35 @@
 					vm.maxAge = 100;
 					break;
 			}
-			console.log('min '+vm.minAge+' max '+vm.maxAge);
+			console.log("rangeSelState ", vm.rangeSelState);
 		};
 		
+        vm.interestSel = function() {
+            vm.interestSelState = true;
+            console.log("interestSelState ", vm.interestSelState);
+        };
+        
 		vm.applySel = function () {
+            if ((vm.rangeSelState === true) && (vm.interestSelState === false)) {
+                vm.params = {
+                        min : vm.minAge,
+                        max : vm.maxAge
+                };
+            }
+            else if ((vm.rangeSelState === false) && (vm.interestSelState === true)) {
+                vm.params = {
+                        p: vm.selectedInterests
+                };
+            }
+            else {
+                vm.params = {
+                        min : vm.minAge,
+                        max : vm.maxAge,
+                        p: vm.selectedInterests
+                };
+            }
 			
-			vm.params = {
-					min : vm.minAge,
-					max : vm.maxAge,
-					p: vm.selectedInterests
-			};
-			
-			//console.log(vm.params);
+			console.log(vm.params);
 			var myDataPromise = ocUsersSrv.getOcUsers(vm.params);
 			
 			myDataPromise.then(
@@ -69,6 +89,13 @@
 					);
 		};
 		
+        vm.clearSel = function () {
+            vm.selectedRange = undefined;
+            vm.selectedInterests = undefined;
+            vm.params = {};
+            console.log("vm.clearSel");
+        };
+        
         vm.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withLanguage({
@@ -145,8 +172,9 @@
             $location.path('/expercomms');
         };
 		
-		vm.interestsList = ['Mobility','Parking','Environment','Buses','Parks','Air quality', 'Culture','Shopping','Traffic','Beach'];
-
+		//vm.interestsList = ['Mobility','Parking','Environment','Buses','Parks','Air quality', 'Culture','Shopping','Traffic','Beach'];
+        vm.interestsList = utilSrv.getInterests();
+        
         initialize();
 
         function initialize() {

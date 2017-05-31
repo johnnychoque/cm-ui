@@ -1,0 +1,19 @@
+<h2>Cummulative Metric Score</h2>
+
+<div layout="column">
+	<span>
+	<label class="ep_pLabel">Participant username: </label>
+	<label class="ep_bLabel"> {{vm.partUsername}} </label>
+	</span>
+    <br>
+    <label class="ep_pLabel">List of metrics</label>
+	<md-select placeholder="Select metric" ng-model="vm.foo">
+		<md-option ng-value="metric" ng-repeat="metric in vm.metricList" ng-click="vm.metricSel(metric)">{{metric.metricName}}</md-option>
+	</md-select>
+    <br>
+    <br>
+</div>
+
+<div ng-if="vm.showGraph">
+    <nvd3 options="vm.options" data="vm.data"></nvd3>
+</div>

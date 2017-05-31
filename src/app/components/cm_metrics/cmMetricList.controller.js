@@ -8,7 +8,7 @@
 
     function cmMetricListController($state, $mdDialog, alert, $timeout, animation, DTOptionsBuilder, DTColumnDefBuilder, metricSrv) {
         var vm = this;
-
+        
         vm.dtOptions = DTOptionsBuilder.newOptions()
             .withPaginationType('full_numbers')
             .withLanguage({
@@ -24,10 +24,10 @@
 		
 		vm.metrics = metricSrv.getMetrics();
 		
-		console.log(vm.metrics);
+		console.log('xxxxxxxxxxxx', vm.metrics);
 		
 		vm.editMetric = function (metric) {
-			
+			console.log('Pruebaaaaaa');
 		}
 		
 		vm.metricSel = {};

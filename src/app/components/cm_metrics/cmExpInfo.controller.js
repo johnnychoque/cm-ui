@@ -10,7 +10,7 @@
         var vm = this;
 		
 		vm.mainExperimenterId = managerSrv.getCurrentExperimenterId();
-		vm.experimentId = '20203030'; // HARDCODED, lo tiene que pasar desde EP
+		vm.experimentId = managerSrv.getCurrentExperimentId(); 
 		
         ///////////////////////
         vm.asset = {

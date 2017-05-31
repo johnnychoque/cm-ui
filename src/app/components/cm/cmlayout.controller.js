@@ -19,6 +19,7 @@
 		if (roles.indexOf('experimenter') > -1) {
 			vm.managersSelected.push('experimenter');
 			managerSrv.setCurrentExperimenterId(auth.getCurrentUserid());
+            managerSrv.setCurrentExperimentId('20203030'); // HARDCODED, lo tiene que pasar desde EP
 		}
 		
 		if (roles.indexOf('administrator') > -1) {

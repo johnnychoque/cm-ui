@@ -2,15 +2,22 @@
     'use strict';
 
     angular.module('app.components')
-        .factory('utilSrv', ['$log', utilSrv]);
+        .factory('utilSrv', ['Restangular', '$log', 'experimenterCommunityAPI', utilSrv]);
 
-    function utilSrv($log) {
+    function utilSrv($Restangular, $log, experimenterCommunityAPI) {
 		
 		var usersSelected = [];
+        var interests = [];
+        var partSelected = {};
+        
         var service = {
 			addUsers: addUsers,
 			getUsers: getUsers,
-			deleteUsers: deleteUsers
+			deleteUsers: deleteUsers,
+            addInterests: addInterests,
+            getInterests: getInterests,
+            setPartSelected: setPartSelected,
+            getPartSelected: getPartSelected
 		};
 		
         return service;
@@ -23,7 +30,35 @@
 		function getUsers() {
 			return usersSelected;
 		}
+        
+        function getInterests() {
+            return interests;
+        }
 		
+        function setPartSelected(participant) {
+            partSelected = participant;
+        }
+        
+        function getPartSelected() {
+            return partSelected;
+        }
+        
+        function addInterests(success_, fail_) {
+            experimenterCommunityAPI.getInterests(success, fail);
+
+           function success(result) {
+                for (var i = 0; i < result.length; i++) {
+                    interests.push(result[i].name);
+                }
+                success_();
+            }
+
+            function fail() {
+                fail_();
+				console.log('FAIL');
+            }
+        }     
+        
 		function deleteUsers() {
 			usersSelected.splice(0,usersSelected.length);
 		}

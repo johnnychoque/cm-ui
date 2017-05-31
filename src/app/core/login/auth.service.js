@@ -39,8 +39,8 @@
         //run on app initialization so that we can keep auth across different sessions
         function setCurrentUser(time) {
             user.token = $window.localStorage.getItem('organicity.token') && JSON.parse($window.localStorage.getItem('organicity.token'));
-			console.log('token');
-			console.log(user.token);
+			//console.log('token');
+			//console.log(user.token);
             // Check for user properties
             user.data = $window.localStorage.getItem('organicity.data') && new AuthUser(JSON.parse($window.localStorage.getItem('organicity.data')));
 			console.log('data');
@@ -101,8 +101,8 @@
         }
 
         function login() { 
-			window.location.href = "https://accounts.organicity.eu/realms/organicity/protocol/openid-connect/auth/?response_type=token&client_id=community-management-dev&redirect_uri=http://ec2-35-167-187-240.us-west-2.compute.amazonaws.com:8050/&scope=&state=";
-			//window.location.href = "https://accounts.organicity.eu/realms/organicity/protocol/openid-connect/auth/?response_type=token&client_id=community-management-dev&redirect_uri=http://localhost:8080/&scope=&state=";
+			//window.location.href = "https://accounts.organicity.eu/realms/organicity/protocol/openid-connect/auth/?response_type=token&client_id=community-management-dev&redirect_uri=http://ec2-35-167-187-240.us-west-2.compute.amazonaws.com:8050/&scope=&state=";
+			window.location.href = "https://accounts.organicity.eu/realms/organicity/protocol/openid-connect/auth/?response_type=token&client_id=community-management-dev&redirect_uri=http://localhost:8080/&scope=&state=";
         }
 
         function callback(ret) {
@@ -127,7 +127,6 @@
                     return $location.path('/initialview');
                 }, 100);
             } catch (e) {
-				console.log('CATCH '+e);
                 return $location.path('/welcome');
             }
 

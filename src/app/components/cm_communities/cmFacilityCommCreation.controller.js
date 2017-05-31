@@ -4,9 +4,9 @@
     angular.module('app.components')
         .controller('cmFacilityCommCreationController', cmFacilityCommCreationController);
 
-    cmFacilityCommCreationController.$inject = ['$location', 'facilitySrv', 'alert', 'newCommunitySrv', '$scope', '$timeout', 'animation', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'managerSrv', 'ocUsersSrv'];
+    cmFacilityCommCreationController.$inject = ['$location', 'facilitySrv', 'alert', 'newCommunitySrv', '$scope', '$timeout', 'animation', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'managerSrv', 'ocUsersSrv', 'utilSrv'];
 
-    function cmFacilityCommCreationController($location, facilitySrv, alert, newCommunitySrv, $scope, $timeout, animation, DTOptionsBuilder, DTColumnDefBuilder, managerSrv, ocUsersSrv) {
+    function cmFacilityCommCreationController($location, facilitySrv, alert, newCommunitySrv, $scope, $timeout, animation, DTOptionsBuilder, DTColumnDefBuilder, managerSrv, ocUsersSrv, utilSrv) {
         var vm = this;
 		vm.loadingChart = false;
 		
@@ -149,8 +149,9 @@
             $location.path('/facilitycomms');
         };
 		
-		vm.interestsList = ['Mobility','Parking','Environment','Buses','Parks','Air quality', 'Culture','Shopping','Traffic','Beach'];
-
+		//vm.interestsList = ['Mobility','Parking','Environment','Buses','Parks','Air quality', 'Culture','Shopping','Traffic','Beach'];
+        vm.interestsList = utilSrv.getInterests();
+        
         initialize();
 
         function initialize() {

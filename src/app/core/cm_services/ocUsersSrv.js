@@ -9,59 +9,39 @@
         var ocUsers = [];
 
         var service = {
-			//getUsersCommunity: getUsersCommunity
-			//loadOcUsers: loadOcUsers
 			getOcUsers: getOcUsers,
 			getOneOcUser: getOneOcUser
         };
 
         return service;
 
-		
-		/*
-        function getOcUsers() {
-            return ocUsers;
-        }
-		
-        function loadOcUsers(success_, fail_) {
-            ocUsersAPI.getOcUsers(success, fail);
-
-            function success(users) {
-				ocUsers = users;
-				success_();
-            }
-
-            function fail() {
-                fail_();
-            }
-        }*/
-		
         function getOcUsers(params) {
             return ocUsersAPI.getOcUsers(params, success, fail);
 
             function success(users) {
-				console.log(users);
-				return users;
+                var users_ = [];
+                var value = {};
+				//console.log(users);
+                //console.log('type of users ',typeof users, ' logitud ', users.lenght);
+                console.log(users.lenght);
+                var usersAux = JSON.parse(users); console.log(usersAux.length)
+                
+                for (var i=0; i<users.lenght; i++) {
+                    value.username = users[i].username;
+                    value.age = users[i].age;
+                    value.interests = users[i].interests;
+                    value.country = users[i].country;
+                    users_.push(value);
+                    console.log('users_[i] ',users_);
+                }
+                console.log('users_ ',users_);
+				return users_;
             }
 
             function fail() {
 
             }
         }
-		/*
-        function getUsersCommunity(params) {
-            return ocUsersAPI.getUsersCommunity(params, success, fail);
-
-            function success(users) {
-				console.log(users);
-				return users;
-            }
-
-            function fail() {
-
-            }
-			
-        }*/
 		
         function getOneOcUser(id) {
             return ocUsersAPI.getOneOcUser(id, success, fail);
@@ -79,38 +59,3 @@
     }
 
 })();
-/*
-    var myDataPromise = myService.getData(); 
-		myDataPromise.then(
-			function(result) { 
-			 $scope.data = result; 
-			 console.log("data.name"+$scope.data.name); 
-			}
-		); 
-		
-        function getOcUsers(params) {
-            ocUsersAPI.getOcUsers(params, success, fail);
-
-            function success(users) {
-				console.log(users);
-				return users;
-            }
-
-            function fail() {
-
-            }
-        }
-		
-        function getOcUsers(params) {
-            ocUsersAPI.getOcUsers(params, success, fail)
-			.then(
-				function success(users) {
-					console.log(users);
-					return users;
-				},
-				function fail() {
-
-				}			
-			);
-        }
-*/

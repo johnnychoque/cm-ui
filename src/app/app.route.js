@@ -108,6 +108,20 @@
                                     defer.resolve({ success: false });
                                 });
                             return defer.promise;
+                        },
+                        loadMetrics: function($q, metricSrv, $stateParams) {
+                            var defer = $q.defer();
+                            //metricSrv.loadMetrics($stateParams.expId,
+							//HARDCODED: expId = 20203030
+                            console.log('load metrics participants');
+							metricSrv.loadMetrics('20203030',
+                                function() {
+                                    defer.resolve({ success: true });
+                                },
+                                function() {
+                                    defer.resolve({ success: false });
+                                });
+                            return defer.promise;
                         }
                     }
 				}
@@ -157,6 +171,17 @@
 				}
 			}
 		})
+        
+        .state('layout.cm.participants.metrics', {
+            url: '/participants/metrics',
+			views: {
+                'partContent@layout.cm.participants': {
+                    templateUrl: 'app/components/cm_participants/cmShowMetrics.html',
+                    controller: 'cmShowMetricsController', 
+                    controllerAs: 'vm'
+                }
+            }
+        })
 			
         .state('layout.cm.experCommCreation', {
             url: '/expercommcreation',
@@ -213,6 +238,19 @@
                                 defer.resolve({ success: false });
                             });
                             return defer.promise;
+                        } ,
+                        loadInterests: function(utilSrv, $q, $state) {
+                            var defer = $q.defer();
+                            //console.log("interest size ", utilSrv.getInterests().length)
+                            if (utilSrv.getInterests().length == 0) {
+                                console.log('utilSrv.addInterests');
+                                utilSrv.addInterests(function() {
+                                    defer.resolve({ success: true });
+                                }, function() {
+                                    defer.resolve({ success: false });
+                                });
+                                return defer.promise;
+                            }
                         }
                     }
                 }
@@ -228,12 +266,11 @@
                     controller: 'cmSiteCommController',
                     controllerAs: 'vm',
                     resolve: {
-						/*
                         islogged: function($state, auth) {
                             if (!auth.isAuth()) {
                                 return auth.logout();
                             }
-                        },*/ 
+                        },
                         load: function(siteSrv, $q, $state) {
                             var defer = $q.defer();
 							console.log("Antes de loadComm"); 
@@ -243,6 +280,19 @@
                                 defer.resolve({ success: false });
                             });
                             return defer.promise;
+                        },
+                        loadInterests: function(utilSrv, $q, $state) {
+                            var defer = $q.defer();
+                            //console.log("interest size ", utilSrv.getInterests().length)
+                            if (utilSrv.getInterests().length == 0) {
+                                console.log('utilSrv.addInterests');
+                                utilSrv.addInterests(function() {
+                                    defer.resolve({ success: true });
+                                }, function() {
+                                    defer.resolve({ success: false });
+                                });
+                                return defer.promise;
+                            }
                         }
                     } 
                 }
@@ -257,12 +307,11 @@
                     controller: 'cmSiteCommController',
                     controllerAs: 'vm',
                     resolve: {
-						/*
                         islogged: function($state, auth) {
                             if (!auth.isAuth()) {
                                 return auth.logout();
                             }
-                        },*/ 
+                        },
                         load: function(siteSrv, $q, $state) {
                             var defer = $q.defer();
                             siteSrv.loadCommunities('santander', function() {
@@ -271,6 +320,19 @@
                                 defer.resolve({ success: false });
                             });
                             return defer.promise;
+                        },
+                        loadInterests: function(utilSrv, $q, $state) {
+                            var defer = $q.defer();
+                            //console.log("interest size ", utilSrv.getInterests().length)
+                            if (utilSrv.getInterests().length == 0) {
+                                console.log('utilSrv.addInterests');
+                                utilSrv.addInterests(function() {
+                                    defer.resolve({ success: true });
+                                }, function() {
+                                    defer.resolve({ success: false });
+                                });
+                                return defer.promise;
+                            }
                         }
                     } 
                 }
@@ -285,12 +347,11 @@
                     controller: 'cmSiteCommController',
                     controllerAs: 'vm',
                     resolve: {
-						/*
                         islogged: function($state, auth) {
                             if (!auth.isAuth()) {
                                 return auth.logout();
                             }
-                        },*/ 
+                        },
                         load: function(siteSrv, $q, $state) {
                             var defer = $q.defer();
                             siteSrv.loadCommunities('aarhus', function() {
@@ -299,6 +360,19 @@
                                 defer.resolve({ success: false });
                             });
                             return defer.promise;
+                        },
+                        loadInterests: function(utilSrv, $q, $state) {
+                            var defer = $q.defer();
+                            //console.log("interest size ", utilSrv.getInterests().length)
+                            if (utilSrv.getInterests().length == 0) {
+                                console.log('utilSrv.addInterests');
+                                utilSrv.addInterests(function() {
+                                    defer.resolve({ success: true });
+                                }, function() {
+                                    defer.resolve({ success: false });
+                                });
+                                return defer.promise;
+                            }
                         }
                     } 
                 }
@@ -314,12 +388,11 @@
                     controller: 'cmFacilityCommController',
                     controllerAs: 'vm',
                     resolve: {
-						/*
                         islogged: function($state, auth) {
                             if (!auth.isAuth()) {
                                 return auth.logout();
                             }
-                        },*/
+                        },
                         load: function(facilitySrv, $q, $state) {
                             var defer = $q.defer();
                             facilitySrv.loadCommunities(function() {
@@ -328,6 +401,19 @@
                                 defer.resolve({ success: false });
                             });
                             return defer.promise;
+                        },
+                        loadInterests: function(utilSrv, $q, $state) {
+                            var defer = $q.defer();
+                            //console.log("interest size ", utilSrv.getInterests().length)
+                            if (utilSrv.getInterests().length == 0) {
+                                console.log('utilSrv.addInterests');
+                                utilSrv.addInterests(function() {
+                                    defer.resolve({ success: true });
+                                }, function() {
+                                    defer.resolve({ success: false });
+                                });
+                                return defer.promise;
+                            }
                         }
                     }
                 }
@@ -451,8 +537,8 @@
             requireBase: false
         }).hashPrefix('!');
 
-        RestangularProvider.setBaseUrl('http://ec2-35-167-187-240.us-west-2.compute.amazonaws.com:8051');
-		//RestangularProvider.setBaseUrl('http://localhost:8081');
+        //RestangularProvider.setBaseUrl('http://ec2-35-167-187-240.us-west-2.compute.amazonaws.com:8051');
+		RestangularProvider.setBaseUrl('http://localhost:8081');
         //RestangularProvider.setBaseUrl('https://localhost:8443');
         //RestangularProvider.setBaseUrl('https://experimenters.organicity.eu:8443');
 

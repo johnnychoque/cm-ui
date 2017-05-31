@@ -4,9 +4,9 @@
     angular.module('app.components')
         .controller('CmParticipantListController', CmParticipantListController);
 
-    CmParticipantListController.$inject = ['$state', '$timeout', 'animation', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'invitationSrv', 'participantSrv'];
+    CmParticipantListController.$inject = ['$state', '$timeout', 'animation', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'invitationSrv', 'participantSrv', 'utilSrv'];
 
-    function CmParticipantListController($state, $timeout, animation, DTOptionsBuilder, DTColumnDefBuilder, invitationSrv, participantSrv) {
+    function CmParticipantListController($state, $timeout, animation, DTOptionsBuilder, DTColumnDefBuilder, invitationSrv, participantSrv, utilSrv) {
         var vm = this;
 
         vm.dtOptions = DTOptionsBuilder.newOptions()
@@ -26,6 +26,12 @@
 		
         vm.NewInvitation = function() {
             $state.go('layout.cm.participants.invitations');
+        };
+        
+        vm.showMetrics = function(participant) {
+            console.log(participant);
+            utilSrv.setPartSelected(participant);
+            $state.go('layout.cm.participants.metrics');
         };
 		
         vm.dtOptionsPending = DTOptionsBuilder.newOptions()

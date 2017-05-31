@@ -4,9 +4,9 @@
     angular.module('app.components')
         .controller('cmSiteCommCreationController', cmSiteCommCreationController);
 
-    cmSiteCommCreationController.$inject = ['$location', 'siteSrv', 'alert', 'newSiteCommSrv', '$scope', '$timeout', 'animation', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'managerSrv', 'ocUsersSrv'];
+    cmSiteCommCreationController.$inject = ['$location', 'siteSrv', 'alert', 'newSiteCommSrv', '$scope', '$timeout', 'animation', 'DTOptionsBuilder', 'DTColumnDefBuilder', 'managerSrv', 'ocUsersSrv', 'utilSrv'];
 
-    function cmSiteCommCreationController($location, siteSrv, alert, newSiteCommSrv, $scope, $timeout, animation, DTOptionsBuilder, DTColumnDefBuilder, managerSrv, ocUsersSrv) {
+    function cmSiteCommCreationController($location, siteSrv, alert, newSiteCommSrv, $scope, $timeout, animation, DTOptionsBuilder, DTColumnDefBuilder, managerSrv, ocUsersSrv, utilSrv) {
         var vm = this;
 		vm.loadingChart = false;
 		
@@ -118,8 +118,9 @@
 			return (vm.selected.indexOf(user.subscribedId) != -1);
 		};
 
-		vm.interestsList = ['Mobility','Parking','Environment','Buses','Parks','Air quality', 'Culture','Shopping','Traffic','Beach'];
-
+		//vm.interestsList = ['Mobility','Parking','Environment','Buses','Parks','Air quality', 'Culture','Shopping','Traffic','Beach'];
+        vm.interestsList = utilSrv.getInterests();
+        
 		// subscribedId is defined from token in cm-api 
         vm.create = function() {
 			vm.loadingChart = true;

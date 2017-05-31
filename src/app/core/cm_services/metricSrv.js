@@ -13,7 +13,8 @@
             loadMetrics: loadMetrics,
             newMetric: newMetric,
             updateExperiment: updateExperiment,
-            removeMetric: removeMetric
+            removeMetric: removeMetric,
+            getMetricValues: getMetricValues
         };
 
         return service;
@@ -64,6 +65,27 @@
             }
         }
 		
+		/* 
+		
+		*/
+        function getMetricValues(params, success_, fail_) {
+            return metricAPI.getMetricValues(params, success, fail);
+
+            function success(metrics) {
+                // FILTRAR solo metricValue y measuredDate para retornar solo array
+                var values = [];
+                //Data is represented as an array of {x,y} pairs.
+                for (var i = 0; i < metrics.length; i++) {
+                    values.push({x: Date.parse(metrics[i].measuredDate), y: metrics[i].metricValue});
+                }
+                return values;
+            }
+
+            function fail() {
+
+            }
+        }
+        
 		/* 
 		
 		*/

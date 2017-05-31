@@ -9,9 +9,14 @@
     function cmMetricCreationController($state, alert, $timeout, animation, metricSrv) {
         var vm = this;
 		
-		vm.mFunctionList = ['ln','log','exp', 'x^2', 'linear'];
+        /*
+        "HRstart" (High Rate start) use sqrt(x) function
+        "HRend" (High Rate end) use x^2 funtion
+        "linear" use linear function (y=x)
+        */
+		vm.mFunctionList = ['HRstart', 'HRend', 'linear'];
 		
-		vm.mElementList = ['#assets-up','#assets-down','#annot-write'];
+		vm.mElementList = ['#assets-up','#assets-down','#annot-create','#annot-read'];
 		
 		vm.mPeriodList = ['weekly', 'fortnightly', 'monthly'];
 				

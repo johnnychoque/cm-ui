@@ -18,14 +18,15 @@
             getInvitations: getInvitations,
             getParInvitations: getParInvitations,
             updateInvitations: updateInvitations,
-            leaveExperiment: leaveExperiment
+            leaveExperiment: leaveExperiment,
+            getMetricValues: getMetricValues
         };
 
         return service;
 
 		/* */
         function getMetrics(id, success_, fail_) {
-            var path = 'metrics/' + id;
+            var path = 'metrics-def/' + id;
             Restangular.one(path).get().then(
                 function(res) {
                     return success_(res);
@@ -35,9 +36,25 @@
                 });
 
         }
+        
+        function getMetricValues(params, success_, fail_) {
+            var path = 'metrics-val/';
+            return Restangular.one(path)
+					.get(params)
+					.then(
+						function(res) {
+                            console.log(res);
+							return success_(res);
+						},
+						function(res) {
+							return fail_(res);
+						}
+					);
+        }
 
+        /*  */
         function newMetric(info, success_, fail_) {
-            var path = 'metrics/';
+            var path = 'metrics-def/';
             Restangular.one(path).customPOST(info).then(
                 function(res) {
                     return success_(res);
@@ -50,7 +67,7 @@
 
 		/* */
         function removeMetric(expId, name, success_, fail_) {
-            var path = 'metrics/' + expId + '/' + name;
+            var path = 'metrics-def/' + expId + '/' + name;
 			console.log(path);
             Restangular.one(path).remove().then(
                 function(res) {
@@ -61,6 +78,7 @@
                 });
         }
 		
+        
         function getExperiment(id, success_, fail_) {
             var path = 'experiments/' + id;
             Restangular.one(path).get().then(
@@ -83,8 +101,6 @@
                 });
         }
 
-
-
         function addExperimenter(id, email, success_, fail_){
             var path = 'experiments/addexperimenter/' + id + '/' + email;
             Restangular.one(path).customPOST().then(
@@ -95,7 +111,8 @@
                     return fail_();
                 });
         }
-
+        
+        
         function sendInvitations(exp, emails, message, success_, fail_){
             var path = 'invitations/' + exp.experimentId;
             Restangular.one(path).customPOST({
