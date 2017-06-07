@@ -58,26 +58,15 @@
         };
         
 		vm.applySel = function () {
-            if ((vm.rangeSelState === true) && (vm.interestSelState === false)) {
-                vm.params = {
-                        min : vm.minAge,
-                        max : vm.maxAge
-                };
+            if (vm.rangeSelState === true) {
+                vm.params.ageFrom = vm.minAge;
+                vm.params.ageTo = vm.maxAge;
             }
-            else if ((vm.rangeSelState === false) && (vm.interestSelState === true)) {
-                vm.params = {
-                        p: vm.selectedInterests
-                };
-            }
-            else {
-                vm.params = {
-                        min : vm.minAge,
-                        max : vm.maxAge,
-                        p: vm.selectedInterests
-                };
-            }
-			
+            if (vm.interestSelState === true) {
+                vm.params.interests = vm.selectedInterests;
+            };
 			console.log(vm.params);
+            
 			var myDataPromise = ocUsersSrv.getOcUsers(vm.params);
 			
 			myDataPromise.then(
@@ -93,6 +82,7 @@
             vm.selectedRange = undefined;
             vm.selectedInterests = undefined;
             vm.params = {};
+            vm.rangeSelected = [];
             console.log("vm.clearSel");
         };
         

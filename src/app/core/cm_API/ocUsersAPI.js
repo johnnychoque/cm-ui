@@ -20,7 +20,6 @@
 					.get(params)
 					.then(
 						function(res) {
-                            console.log(res);
 							return success_(res.plain());
 						},
 						function(res) {
@@ -35,7 +34,6 @@
 					.get()
 					.then(
 						function(res) {
-                            console.log(res);
 							return success_(res);
 						},
 						function(res) {

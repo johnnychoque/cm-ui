@@ -72,8 +72,20 @@
 			var tmp = keywords.replace(/\s/g," ");
             community.keywords = tmp.split(",");
         }
+        
 		function setCriteria(params) {
-			community.criteria = "Age min: " + params.min + ", Age max: " + params.max + ", Interests: " + params.p;
+			var criteria = "";
+            //"Age min: " + params.min + ", Age max: " + params.max + ", Interests: " + params.p;
+            if (params.ageFrom !== undefined) {
+                criteria = criteria + "Age min: " + params.ageFrom;
+            }
+            if (params.ageTo !== undefined) {
+                criteria = criteria + " Age max: " + params.ageTo;
+            }
+            if (params.interests !== undefined) {
+                criteria = criteria + " Interests: " + params.interests;
+            }
+            community.criteria = criteria;
 		}
 
         function getCommunity() {

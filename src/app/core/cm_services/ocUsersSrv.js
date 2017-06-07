@@ -20,21 +20,15 @@
 
             function success(users) {
                 var users_ = [];
-                var value = {};
-				//console.log(users);
-                //console.log('type of users ',typeof users, ' logitud ', users.lenght);
-                console.log(users.lenght);
-                var usersAux = JSON.parse(users); console.log(usersAux.length)
-                
-                for (var i=0; i<users.lenght; i++) {
+                for (var i=0; i<Object.keys(users).length; i++) {
+                    var value = new Object();
+                    value.subscribedId = users[i].sub;
                     value.username = users[i].username;
                     value.age = users[i].age;
                     value.interests = users[i].interests;
                     value.country = users[i].country;
                     users_.push(value);
-                    console.log('users_[i] ',users_);
                 }
-                console.log('users_ ',users_);
 				return users_;
             }
 
@@ -47,8 +41,15 @@
             return ocUsersAPI.getOneOcUser(id, success, fail);
 
             function success(user) {
-				console.log(user);
-				return user;
+                var user_ = {};
+                user_.subscribedId = user.sub;
+                user_.username = user.username;
+                user_.age = user.age;
+                user_.interests = user.interests;
+                user_.country = user.country;
+                user_.email = user.email;
+				console.log(user_);
+				return user_;
             }
 
             function fail() {

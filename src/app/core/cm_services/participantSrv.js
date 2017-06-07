@@ -24,10 +24,8 @@
         {
             participantAPI.getParticipants(id, 
             function (res){
-                console.log('res ', res);
                 participants = res.participants;
 				console.log(participants);
-                console.log('type of participants ',typeof participants, ' len ', participants.lenght);
                 return success_();
 
             }, function (){
