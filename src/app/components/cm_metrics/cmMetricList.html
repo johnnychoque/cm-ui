@@ -5,7 +5,6 @@
             <th>Metric name</th>
             <th>Metric function</th>
 			<th>Created date</th>
-			<th>Edit</th>
 			<th>Remove</th>
         </tr>
     </thead>
@@ -14,7 +13,6 @@
             <td align="center"> {{ metric.metricName }} </td>
 			<td align="center"> {{ metric.metricFunction }} </td>
 			<td align="center"> {{ vm.readableDate(metric.createdDate) }} </td>
-			<td align="center"> <i ng-click="vm.editMetric(metric)" style="cursor:pointer" class="material-icons">description</i></td>
 			<td align="center"> <i ng-click="vm.confirmRemove(metric)" style="cursor:pointer" class="material-icons">delete_forever</i></td>
         </tr>
     </tbody>

@@ -23,13 +23,6 @@
         ];
 		
 		vm.metrics = metricSrv.getMetrics();
-		
-		console.log('xxxxxxxxxxxx', vm.metrics);
-		
-		vm.editMetric = function (metric) {
-			console.log('Pruebaaaaaa');
-		}
-		
 		vm.metricSel = {};
 		
 		vm.confirmRemove = function(metric) {

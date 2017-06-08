@@ -17,8 +17,6 @@
 		vm.mFunctionList = ['HRstart', 'HRend', 'linear'];
 		
 		vm.mElementList = ['#assets-up','#assets-down','#annot-create','#annot-read'];
-		
-		vm.mPeriodList = ['weekly', 'fortnightly', 'monthly'];
 				
 		vm.parameters = [{
 			weight: 0,
@@ -29,7 +27,6 @@
 		}];
 		
 		vm.mName = '';
-		vm.mPeriod = '';
 		
         vm.addFunction = function() {
 			var obj = {
@@ -90,7 +87,6 @@
 				var expId = '20203030'; // HARDCODED.
 				metric.experimentId = expId;
 				metric.metricName = vm.mName;
-				metric.periodicity = vm.mPeriod;
 				metric.parameters = vm.parameters;
 				console.log(metric);
 				metricSrv.newMetric(metric, creationSuccess, creationError);
@@ -109,7 +105,7 @@
         }
 
         vm.cancel = function() {
-            console.log(vm.parameters);
+            $state.go('layout.cm.metrics.list');
         };
 
         initialize();

@@ -1,20 +1,9 @@
 <h2> Creation of Metric </h2>
 <br>
-<div layout="column">
 <div layout="row">
 	<label style="margin-left:5pt"> Metric name: </label>
 	<input style="margin-left:8pt; max-width:150px;" type="text" ng-model="vm.mName">
 </div>
-<br>
-<div layout="row">
-	<label style="margin-left:5pt"> Periodicity: </label>
-	<select style="margin-left:15pt" ng-model="vm.mPeriod">
-		<option value="" disabled selected>Select period</option>
-		<option ng-repeat="mPeriod in vm.mPeriodList">{{mPeriod}}</option>
-	</select>
-</div>
-</div>
-<br>
 <br>
 <md-button class="md-flat md-primary" ng-click="vm.addFunction()" style="float:left"> Add Function </md-button>
 <br>
@@ -36,8 +25,6 @@
 		<option ng-repeat="element in vm.mElementList">{{element}}</option>
 	</select>
 	<label style="margin-left:5pt"> ) </label>
-	<label style="margin-left:10pt">Min:</label>
-	<input style="margin-left:8pt; max-width:60px;" min="0.0" type="number" ng-model="parm.min">
 	<label style="margin-left:10pt">Max:</label>
 	<input style="margin-left:8pt; max-width:60px;" min="0.0" type="number" ng-model="parm.max">
 	<i ng-if="$index > 0" ng-click="vm.removeParam($index)" style="margin-left:15pt; cursor:pointer" class="material-icons">delete_forever</i>
