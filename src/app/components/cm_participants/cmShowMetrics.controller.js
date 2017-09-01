@@ -22,6 +22,7 @@
                 },
                 x: function(d){ return d.x; },
                 y: function(d){ return d.y; },
+                //yDomain: [0, 1],
                 useInteractiveGuideline: true,
                 dispatch: {
                     stateChange: function(e){ console.log("stateChange"); },
@@ -30,12 +31,13 @@
                     tooltipHide: function(e){ console.log("tooltipHide"); }
                 },
                 xAxis: {
-                    axisLabel: 'Date' /*,
-                    tickFormat: function(d) {
-                        var dx = vm.data[0].values[d].x;
-                        var label = vm.data[0].values[d].label;
-                        return label ? label : d3.time.format('%x')(new Date(dx));
-                    }*/
+                    axisLabel: 'Measured Date', 
+                    tickFormat: function(d) { return d3.time.format('%d-%b')(new Date(d)) },
+                    tickValues: function(values) {
+                      return _.map(values[0].values, function(v) {
+                        return new Date(v.x);
+                      });
+                    }
                 },
                 yAxis: {
                     axisLabel: 'Metric value [0,1]',
@@ -65,8 +67,8 @@
 			myDataPromise.then(
 						function (result) {
                             vm.data = [{ values: result,
-                                              key: metric.metricName,
-                                              color: '#EF3F6F'}];
+                                        key: metric.metricName,
+                                        color: '#EF3F6F'}];
                             vm.showGraph = true;
 							return myDataPromise;
 						}
